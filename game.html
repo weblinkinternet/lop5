@@ -5,20 +5,54 @@
 <title>Trò chơi</title>
 
 <style>
-body { font-family: Arial; text-align:center; background:#fffbe6; }
-.box {
-    background:white;
-    padding:20px;
-    margin:50px auto;
-    width:350px;
-    border-radius:10px;
-    box-shadow:0 0 10px #ccc;
+body {
+    margin: 0;
+    font-family: Arial;
+    background: linear-gradient(135deg, #ffecd2, #fcb69f);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
+
+/* Hộp game */
+.box {
+    background: white;
+    width: 400px;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    text-align: center;
+}
+
+/* Timer */
+#timer {
+    color: red;
+    margin-bottom: 10px;
+}
+
+/* Câu hỏi */
+#question {
+    font-size: 20px;
+    margin: 15px 0;
+}
+
+/* Nút trả lời */
 button {
-    display:block;
-    margin:10px auto;
-    padding:10px;
-    width:80%;
+    display: block;
+    width: 100%;
+    margin: 8px 0;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    background: #4CAF50;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #45a049;
 }
 </style>
 </head>
@@ -33,7 +67,7 @@ if (!localStorage.getItem("currentUser")) {
 
 <div class="box">
     <h2 id="timer">⏱️ 60s</h2>
-    <h3 id="question">Câu hỏi</h3>
+    <h3 id="question"></h3>
 
     <button onclick="answer(0)" id="a"></button>
     <button onclick="answer(1)" id="b"></button>
@@ -46,23 +80,24 @@ let current = 0;
 let score = 0;
 let time = 60;
 
-// tạo 30 câu random đơn giản
+// tạo 30 câu
 let questions = [];
 
 for (let i = 0; i < 30; i++) {
     let a = Math.floor(Math.random()*10);
     let b = Math.floor(Math.random()*10);
     questions.push({
-        q: a + " + " + b + " = ?",
+        q: "Câu " + (i+1) + ": " + a + " + " + b + " = ?",
         options: [a+b, a+b+1, a+b-1, a+b+2],
         correct: 0
     });
 }
 
-// đếm thời gian
+// timer
 let timer = setInterval(()=>{
     time--;
     document.getElementById("timer").innerText = "⏱️ " + time + "s";
+
     if(time <= 0){
         clearInterval(timer);
         endGame();
@@ -82,6 +117,7 @@ function answer(i){
     if(i === questions[current].correct){
         score++;
     }
+
     current++;
 
     if(current >= 30){
