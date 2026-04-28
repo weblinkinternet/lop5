@@ -3,36 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lớp Học 5 - VioEdu Style</title>
+    <title>VioEdu Clone - Trang Chủ</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
 
-<div id="app-container">
-    <div class="header">
-        <span>Cấp độ: <span id="level-txt">1</span></span>
-        <span id="diamond-count">💎 0</span>
-    </div>
+    <nav class="bottom-nav">
+        <div class="nav-item active" onclick="showPage('home')"><i class="fas fa-home"></i><span>Trang chủ</span></div>
+        <div class="nav-item" onclick="showPage('learn')"><i class="fas fa-book"></i><span>Học tập</span></div>
+        <div class="nav-item" onclick="showPage('rank')"><i class="fas fa-trophy"></i><span>Xếp hạng</span></div>
+    </nav>
 
-    <div class="progress-bar">
-        <div id="progress-fill"></div>
-    </div>
-
-    <div id="quiz-section">
-        <div class="question-box">
-            <h2 id="question-text">Đang tải câu hỏi...</h2>
-            <div class="options" id="options-container">
+    <div id="main-content">
+        <section id="home-page" class="page">
+            <div class="user-banner">
+                <div class="avatar">👦</div>
+                <div class="user-info">
+                    <h3>Chào, Học Sinh Lớp 5!</h3>
+                    <p>Hôm nay bạn muốn học gì nào?</p>
                 </div>
-        </div>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-card">💎 <br> <span id="diamond-home">0</span></div>
+                <div class="stat-card">🔥 <br> <span>3 Ngày</span></div>
+            </div>
+
+            <div class="subject-list">
+                <div class="subject-card math" onclick="showPage('learn')">
+                    <i class="fas fa-calculator"></i>
+                    <h4>Toán Học</h4>
+                </div>
+                <div class="subject-card viet" onclick="alert('Môn Tiếng Việt đang cập nhật!')">
+                    <i class="fas fa-pen-nib"></i>
+                    <h4>Tiếng Việt</h4>
+                </div>
+            </div>
+        </section>
+
+        <section id="learn-page" class="page" style="display:none;">
+            <div class="progress-bar"><div id="progress-fill"></div></div>
+            <div id="quiz-section">
+                <h2 id="question-text">Câu hỏi sẽ hiện ở đây</h2>
+                <div class="options" id="options-container"></div>
+            </div>
+        </section>
     </div>
 
-    <div id="result-screen" style="display: none;">
-        <h1 style="color: var(--primary);">Chúc mừng! 🎉</h1>
-        <p>Bạn đã hoàn thành bài học xuất sắc.</p>
-        <button onclick="location.reload()" style="padding: 10px 20px; cursor:pointer;">Học lại</button>
-    </div>
-</div>
-
-<script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
