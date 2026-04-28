@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lớp Học 5 - VioEdu Style</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="app-container">
+    <div class="header">
+        <span>Cấp độ: <span id="level-txt">1</span></span>
+        <span id="diamond-count">💎 0</span>
+    </div>
+
+    <div class="progress-bar">
+        <div id="progress-fill"></div>
+    </div>
+
+    <div id="quiz-section">
+        <div class="question-box">
+            <h2 id="question-text">Đang tải câu hỏi...</h2>
+            <div class="options" id="options-container">
+                </div>
+        </div>
+    </div>
+
+    <div id="result-screen" style="display: none;">
+        <h1 style="color: var(--primary);">Chúc mừng! 🎉</h1>
+        <p>Bạn đã hoàn thành bài học xuất sắc.</p>
+        <button onclick="location.reload()" style="padding: 10px 20px; cursor:pointer;">Học lại</button>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
