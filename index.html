@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Trang chủ</title>
+
+<style>
+body { font-family: Arial; margin:0; background:#f0f8ff; }
+header { background:#4CAF50; color:white; padding:15px; text-align:center; }
+nav { background:#333; padding:10px; text-align:center; }
+nav a { color:white; margin:10px; text-decoration:none; }
+.container { padding:20px; text-align:center; }
+button { padding:10px; border:none; border-radius:8px; background:red; color:white; }
+</style>
+</head>
+
+<body>
+
+<script>
+// ❌ chưa login → về login
+if (!localStorage.getItem("currentUser")) {
+    window.location.href = "login.html";
+}
+</script>
+
+<header>
+    <h1>📚 Học Tập Lớp 5</h1>
+</header>
+
+<nav>
+    <a href="#">Trang chủ</a>
+    <a href="#" onclick="logout()">Đăng xuất</a>
+</nav>
+
+<div class="container">
+    <h2 id="hello"></h2>
+    <p>Chào mừng bạn đến website học tập 🎉</p>
+</div>
+
+<script>
+let user = localStorage.getItem("currentUser");
+document.getElementById("hello").innerText = "Xin chào " + user + " 👋";
+
+function logout() {
+    localStorage.removeItem("currentUser");
+    window.location.href = "login.html";
+}
+</script>
+
+</body>
+</html>
