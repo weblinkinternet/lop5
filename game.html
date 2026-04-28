@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Trò chơi</title>
+
+<style>
+body { font-family: Arial; text-align:center; background:#fffbe6; }
+.box {
+    background:white;
+    padding:20px;
+    margin:50px auto;
+    width:350px;
+    border-radius:10px;
+    box-shadow:0 0 10px #ccc;
+}
+button {
+    display:block;
+    margin:10px auto;
+    padding:10px;
+    width:80%;
+}
+</style>
+</head>
+
+<body>
+
+<script>
+if (!localStorage.getItem("currentUser")) {
+    window.location.href = "login.html";
+}
+</script>
+
+<div class="box">
+    <h2 id="timer">⏱️ 60s</h2>
+    <h3 id="question">Câu hỏi</h3>
+
+    <button onclick="answer(0)" id="a"></button>
+    <button onclick="answer(1)" id="b"></button>
+    <button onclick="answer(2)" id="c"></button>
+    <button onclick="answer(3)" id="d"></button>
+</div>
+
+<script>
+let current = 0;
+let score = 0;
+let time = 60;
+
+// tạo 30 câu random đơn giản
+let questions = [];
+
+for (let i = 0; i < 30; i++) {
+    let a = Math.floor(Math.random()*10);
+    let b = Math.floor(Math.random()*10);
+    questions.push({
+        q: a + " + " + b + " = ?",
+        options: [a+b, a+b+1, a+b-1, a+b+2],
+        correct: 0
+    });
+}
+
+// đếm thời gian
+let timer = setInterval(()=>{
+    time--;
+    document.getElementById("timer").innerText = "⏱️ " + time + "s";
+    if(time <= 0){
+        clearInterval(timer);
+        endGame();
+    }
+},1000);
+
+function loadQ() {
+    let q = questions[current];
+    document.getElementById("question").innerText = q.q;
+    document.getElementById("a").innerText = q.options[0];
+    document.getElementById("b").innerText = q.options[1];
+    document.getElementById("c").innerText = q.options[2];
+    document.getElementById("d").innerText = q.options[3];
+}
+
+function answer(i){
+    if(i === questions[current].correct){
+        score++;
+    }
+    current++;
+
+    if(current >= 30){
+        endGame();
+    } else {
+        loadQ();
+    }
+}
+
+function endGame(){
+    alert("🎉 Kết thúc! Điểm: " + score + "/30");
+    window.location.href = "index.html";
+}
+
+loadQ();
+</script>
+
+</body>
+</html>
