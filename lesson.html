@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Bài học</title>
+
+<style>
+body { font-family: Arial; background:#f0f8ff; text-align:center; }
+.card {
+    background:white;
+    padding:20px;
+    margin:20px auto;
+    width:300px;
+    border-radius:10px;
+    box-shadow:0 0 10px #ccc;
+}
+a { display:block; margin:10px; text-decoration:none; color:#333; }
+</style>
+</head>
+
+<body>
+
+<script>
+if (!localStorage.getItem("currentUser")) {
+    window.location.href = "login.html";
+}
+</script>
+
+<h1>📚 Bài học lớp 5</h1>
+
+<div class="card">
+    <h3>📘 Toán</h3>
+    <a href="#">Trung bình cộng</a>
+    <a href="#">Phân số</a>
+</div>
+
+<div class="card">
+    <h3>📖 Tiếng Việt</h3>
+    <a href="#">Tập làm văn</a>
+    <a href="#">Chính tả</a>
+</div>
+
+<div class="card">
+    <h3>🔬 Khoa học</h3>
+    <a href="#">Cơ thể người</a>
+</div>
+
+<a href="index.html">⬅ Quay lại</a>
+
+</body>
+</html>
